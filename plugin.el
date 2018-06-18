@@ -6,7 +6,7 @@
   )
 
 (defun sourcegraph-search (query)
-  (interactive "squery: ")
+  (interactive "sSearch on Sourcegraph: ")
   (message (buffer-file-name))
   (start-process-shell-command "sourcegraph-search" "sourcegraph-search"
                                (format "sg search %s" query))
