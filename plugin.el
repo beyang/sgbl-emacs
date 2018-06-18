@@ -11,3 +11,14 @@
   (start-process-shell-command "sourcegraph-search" "sourcegraph-search"
                                (format "sg search %s" query))
   )
+
+;; TODO: factor this out into proper minor mode
+(define-key (current-global-map) (kbd "C-c g") 'sourcegraph-open)
+(define-key (current-global-map) (kbd "C-c j") 'sourcegraph-search)
+
+
+;; (defvar sourcegraph-mode-map
+;;   (let ((map (make-sparse-keymap)))
+;;     (define-key map (kbd "C-h h") 'sourcegraph-open)
+;;     map))
+;; (add-to-list 'minor-mode-map-alist `(sourcegraph-mode-map) t)
