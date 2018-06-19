@@ -1,8 +1,14 @@
 (defun sourcegraph-open ()
   (interactive)
-  (message (buffer-file-name))
   (start-process-shell-command "sourcegraph-open" "sourcegraph-open"
                                (format "sg open %s" (buffer-file-name)))
+  )
+
+(defun sourcegraph-copy ()
+  (interactive)
+  (start-process-shell-command "sourcegraph-copy" "sourcegraph-copy"
+                               (format "sg open -copy %s" (buffer-file-name)))
+  (message "Link copied!")
   )
 
 (defun sourcegraph-search (query)
@@ -12,9 +18,21 @@
                                (format "sg search %s" query))
   )
 
+(defun -sourcegraph-url-to-path (url)
+  (string-trim (shell-command-to-string (format "sg local %s" url))))
+
+(defun sourcegraph-edit (url)
+  (interactive "sSourcegraph URL: ")
+  (let ((file (-sourcegraph-url-to-path url)))
+    (find-file file)
+    )
+  )
+
 ;; TODO: factor this out into proper minor mode
 (define-key (current-global-map) (kbd "C-c g") 'sourcegraph-open)
 (define-key (current-global-map) (kbd "C-c j") 'sourcegraph-search)
+(define-key (current-global-map) (kbd "C-c e") 'sourcegraph-edit)
+(define-key (current-global-map) (kbd "C-c c") 'sourcegraph-copy)
 
 
 ;; (defvar sourcegraph-mode-map
