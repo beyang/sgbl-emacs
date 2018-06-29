@@ -1,7 +1,7 @@
 (defun sourcegraph-open ()
   (interactive)
   (start-process-shell-command "sourcegraph-open" "sourcegraph-open"
-                               (format "sg open %s" (buffer-file-name)))
+                               (format "sg open -pos 'L%d' %s" (1+ (count-lines 1 (point))) (buffer-file-name)))
   )
 
 (defun sourcegraph-copy ()
