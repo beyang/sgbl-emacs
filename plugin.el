@@ -21,10 +21,19 @@
 (defun -sourcegraph-url-to-path (url)
   (string-trim (shell-command-to-string (format "sg local %s" url))))
 
+(defun -sourcegraph-url-to-pos (url)
+  (string-trim (shell-command-to-string (format "sg local -pos %s" url))))
+
 (defun sourcegraph-edit (url)
   (interactive "sSourcegraph URL: ")
   (let ((file (-sourcegraph-url-to-path url)))
-    (find-file file)
+    (find-file file))
+  (let ((pos (-sourcegraph-url-to-pos url)))
+    (let ((line (string-to-number (nth 0 (split-string pos ":"))))
+          (col (string-to-number (nth 1 (split-string pos ":")))))
+      (goto-line line)
+      (move-to-column (- col 1))
+      )
     )
   )
 
