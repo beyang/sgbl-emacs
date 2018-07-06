@@ -1,13 +1,13 @@
 (defun sourcegraph-open ()
   (interactive)
   (start-process-shell-command "sourcegraph-open" "sourcegraph-open"
-                               (format "sg open -pos 'L%d' %s" (1+ (count-lines 1 (point))) (buffer-file-name)))
+                               (format "sg open -pos 'L%d:%d' %s" (line-number-at-pos) (current-column) (buffer-file-name)))
   )
 
 (defun sourcegraph-copy ()
   (interactive)
   (start-process-shell-command "sourcegraph-copy" "sourcegraph-copy"
-                               (format "sg open -copy %s" (buffer-file-name)))
+                               (format "sg open -pos 'L%d:%d' -copy %s" (line-number-at-pos) (current-column) (buffer-file-name)))
   (message "Link copied!")
   )
 
@@ -32,7 +32,7 @@
     (let ((line (string-to-number (nth 0 (split-string pos ":"))))
           (col (string-to-number (nth 1 (split-string pos ":")))))
       (goto-line line)
-      (move-to-column (- col 1))
+      (move-to-column col)
       )
     )
   )
