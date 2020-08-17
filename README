@@ -1,0 +1,29 @@
+# Sourcegraph for Emacs
+
+The Sourcegraph plugin for Emacs enables you to quickly open and search code on sourcegraph.com easily and efficiently.
+
+## Installation
+
+Copy the plugin.el file into an emacs init file. 
+
+## Usage
+
+Keyboard Shortcuts:
+
+| Description                     | Shortcut         | 
+|---------------------------------|------------------|
+| Open file in Sourcegraph        | <kbd>C-c g</kbd> |
+| Search selection in Sourcegraph | <kbd>C-c j</kbd> |
+| Copy file from Sourcegraph      | <kbd>C-c c</kbd> |
+| Edit file from Sourcegraph      | <kbd>C-c e</kbd> |
+
+## Questions & Feedback
+
+Please file an issue: https://github.com/beyang/sg-emacs/issues
+
+## Version History
+
+- v1.0.1 - Add documentation. 
+
+- v1.0.0 - Initial Release; open file, search, edit, and copy functionality.
+
