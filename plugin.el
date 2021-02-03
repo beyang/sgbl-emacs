@@ -1,13 +1,13 @@
 (defun sourcegraph-open ()
   (interactive)
   (start-process-shell-command "sourcegraph-open" "sourcegraph-open"
-                               (format "sg open -pos 'L%d:%d' %s" (line-number-at-pos) (current-column) (buffer-file-name)))
+                               (format "sg open -rev -pos 'L%d:%d' %s" (line-number-at-pos) (current-column) (buffer-file-name)))
   )
 
 (defun sourcegraph-copy ()
   (interactive)
   (start-process-shell-command "sourcegraph-copy" "sourcegraph-copy"
-                               (format "sg open -pos 'L%d:%d' -copy %s" (line-number-at-pos) (current-column) (buffer-file-name)))
+                               (format "sg open -rev -pos 'L%d:%d' -copy %s" (line-number-at-pos) (current-column) (buffer-file-name)))
   (message "Link copied!")
   )
 
