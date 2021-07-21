@@ -1,3 +1,5 @@
+(require 'subr-x)
+
 (defun sourcegraph-open ()
   (interactive)
   (start-process-shell-command "sourcegraph-open" "sourcegraph-open"
