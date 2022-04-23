@@ -1,13 +1,13 @@
 (defun sourcegraph-open ()
   (interactive)
   (start-process-shell-command "sourcegraph-open" "sourcegraph-open"
-                               (format "sg open -rev -pos 'L%d:%d' %s" (line-number-at-pos) (current-column) (buffer-file-name)))
+                               (format "sgbl open -rev -pos 'L%d:%d' %s" (line-number-at-pos) (current-column) (buffer-file-name)))
   )
 
 (defun sourcegraph-copy ()
   (interactive)
   (start-process-shell-command "sourcegraph-copy" "sourcegraph-copy"
-                               (format "sg open -rev -pos 'L%d:%d' -copy %s" (line-number-at-pos) (current-column) (buffer-file-name)))
+                               (format "sgbl open -rev -pos 'L%d:%d' -copy %s" (line-number-at-pos) (current-column) (buffer-file-name)))
   (message "Link copied!")
   )
 
@@ -15,14 +15,14 @@
   (interactive "sSearch on Sourcegraph: ")
   (message (buffer-file-name))
   (start-process-shell-command "sourcegraph-search" "sourcegraph-search"
-                               (format "sg search %s" query))
+                               (format "sgbl search %s" query))
   )
 
 (defun -sourcegraph-url-to-path (url)
-  (string-trim (shell-command-to-string (format "sg local %s" url))))
+  (string-trim (shell-command-to-string (format "sgbl local %s" url))))
 
 (defun -sourcegraph-url-to-pos (url)
-  (string-trim (shell-command-to-string (format "sg local -pos %s" url))))
+  (string-trim (shell-command-to-string (format "sgbl local -pos %s" url))))
 
 (defun sourcegraph-edit (url)
   (interactive "sSourcegraph URL: ")
